@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figuras a Escala - Isekai Market</title>
+    <style>
+        /* === DISEÑO GENERAL Y VARIABLES === */
+        :root {
+            --color-principal: #a29bfe;
+            --color-secundario: #6c5ce7;
+            --texto-oscuro: #2d3436;
+            --texto-claro: #636e72;
+            --fondo-gris: #f8f9fa;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--fondo-gris); color: var(--texto-oscuro); }
+        a { text-decoration: none; }
+
+        /* HEADER BÁSICO */
+        .top-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 50px; background-color: #ffffff; border-bottom: 1px solid #dfe6e9;
+        }
+        
+        .logo h1 { font-size: 30px; color: var(--color-principal); letter-spacing: 2px; }
+        .carrito { font-weight: bold; color: var(--texto-claro); }
+
+        /* === CONTENEDOR DEL CATÁLOGO === */
+        .catalogo-container {
+            display: flex; padding: 40px 50px; max-width: 1400px; margin: 0 auto; gap: 50px;
+        }
+
+        /* COLUMNA IZQUIERDA: Filtros Especializados */
+        .filtros-sidebar { width: 250px; flex-shrink: 0; }
+        .filtros-sidebar h2 { font-size: 24px; color: var(--texto-oscuro); margin-bottom: 30px; }
+        .filtros-sidebar h4 { font-size: 15px; color: var(--texto-claro); margin-bottom: 15px; border-bottom: 1px solid #dfe6e9; padding-bottom: 5px;}
+        
+        .rango-precio { display: flex; gap: 10px; margin-bottom: 30px; }
+        .rango-precio input { width: 100%; padding: 8px; border: 1px solid #dfe6e9; border-radius: 5px; outline: none; }
+        
+        .opcion-filtro { margin-bottom: 12px; color: var(--texto-claro); font-size: 14px; display: flex; align-items: center;}
+        .opcion-filtro input { margin-right: 10px; cursor: pointer; }
+
+        /* COLUMNA DERECHA: Grilla de Productos */
+        .productos-grilla {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 30px; width: 100%;
+        }
+
+        /* TARJETAS DE PRODUCTO */
+        .tarjeta-producto {
+            background-color: #ffffff; border: 1px solid #f1f2f6; border-radius: 12px;
+            padding: 20px; text-align: center; transition: all 0.3s ease;
+            position: relative;
+        }
+        .tarjeta-producto:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-color: #dfe6e9; }
+        
+        .etiqueta-exclusiva {
+            position: absolute; top: 10px; right: 10px; background-color: #ffeaa7; color: #d63031;
+            font-size: 11px; font-weight: bold; padding: 5px 10px; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .producto-img { width: 100%; border-radius: 8px; margin-bottom: 15px; }
+        .producto-codigo { font-size: 12px; color: #b2bec3; margin-bottom: 5px; }
+        .producto-titulo { font-size: 15px; color: var(--texto-claro); margin-bottom: 10px; height: 45px; font-weight: 500; }
+        .producto-precio { font-size: 22px; color: var(--texto-oscuro); font-weight: bold; margin-bottom: 20px; }
+        
+        .btn-comprar {
+            background-color: transparent; color: var(--color-secundario); border: 2px solid var(--color-principal);
+            padding: 12px 20px; border-radius: 25px; cursor: pointer; width: 100%; font-weight: bold; transition: all 0.3s;
+        }
+        .btn-comprar:hover { background-color: var(--color-secundario); border-color: var(--color-secundario); color: white; }
+    </style>
+</head>
+<body>
+
+    <!-- TOP HEADER -->
+    <header class="top-header">
+        <!-- Vuelve atrás al index suelto -->
+        <a href="../index.html" class="logo">
+            <h1>ISEKAI MARKET</h1>
+        </a>
+        <div class="carrito">🛒 Mi Carrito (0)</div>
+    </header>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="catalogo-container">
+        
+        <!-- BARRA DE FILTROS PARA ESCALAS -->
+        <aside class="filtros-sidebar">
+            <h2>FIGURAS A ESCALA</h2>
+            
+            <h4>Rango de Precio</h4>
+            <div class="rango-precio">
+                <input type="text" placeholder="Mínimo">
+                <input type="text" placeholder="Máximo">
+            </div>
+
+            <h4>Tamaño / Escala</h4>
+            <div class="opcion-filtro"><input type="checkbox"> Escala 1/8 (Mediana)</div>
+            <div class="opcion-filtro"><input type="checkbox"> Escala 1/7 (Estándar)</div>
+            <div class="opcion-filtro"><input type="checkbox"> Escala 1/4 (Extra Grande)</div>
+
+            <h4 style="margin-top: 30px;">Fabricante</h4>
+            <div class="opcion-filtro"><input type="checkbox"> Good Smile Company</div>
+            <div class="opcion-filtro"><input type="checkbox"> Kotobukiya</div>
+            <div class="opcion-filtro"><input type="checkbox"> Alter</div>
+            <div class="opcion-filtro"><input type="checkbox"> Prime 1 Studio</div>
+        </aside>
+
+        <!-- GRILLA DE PRODUCTOS -->
+        <main class="productos-grilla">
+            <!-- Estatua 1 -->
+            <div class="tarjeta-producto">
+                <img src="productos/producto-figuras-fijas/imag/asuka.jpg" alt="Figura Asuka" class="producto-img">
+                <p class="producto-codigo">Cód: ESC-1001</p>
+                <p class="producto-titulo">ASUKA LANGLEY 1/7 SCALE - EVANGELION 3.0+1.0</p>
+                <h2 class="producto-precio">$65.000,00</h2>
+                <!-- Vínculo a la carpeta productos -->
+                <a href="productos/producto-figuras-fijas/producto-asuka.html">
+                    <button class="btn-comprar">Ver Producto</button>
+                </a>
+            </div>
+
+            <!-- Estatua 2 -->
+            <div class="tarjeta-producto">
+                <div class="etiqueta-exclusiva">PRE-ORDER</div>
+                <img src="productos/producto-figuras-fijas/imag/artorias.jpg" alt="Estatua Artorias" class="producto-img">
+                <p class="producto-codigo">Cód: ESC-5020</p>
+                <p class="producto-titulo">ESTATUA DIORAMA ARTORIAS THE ABYSSWALKER - DARK SOULS</p>
+                <h2 class="producto-precio">$350.000,00</h2>
+                <a href="productos/producto-figuras-fijas/producto-artorias.html">
+                    <button class="btn-comprar">Ver Producto</button>
+                </a>
+            </div>
+
+            <!-- Estatua 3 -->
+            <div class="tarjeta-producto">
+                <img src="productos/producto-figuras-fijas/imag/zero-two.jpg" alt="Figura Zero Two" class="producto-img">
+                <p class="producto-codigo">Cód: ESC-1055</p>
+                <p class="producto-titulo">ZERO TWO 1/7 SCALE FOR MY DARLING - DARLING IN THE FRANXX</p>
+                <h2 class="producto-precio">$100.000,00</h2>
+                <a href="productos/producto-figuras-fijas/producto-zerotwo.html">
+                    <button class="btn-comprar">Ver Producto</button>
+                </a>
+            </div>
+            
+            <!-- Estatua 4 -->
+            <div class="tarjeta-producto">
+                <img src="productos/producto-figuras-fijas/imag/rengoku.jpg" alt="Figura Rengoku" class="producto-img">
+                <p class="producto-codigo">Cód: ESC-1088</p>
+                <p class="producto-titulo">KYOJURO RENGOKU 1/8 SCALE ARTFX J - DEMON SLAYER</p>
+                <h2 class="producto-precio">$145.000,00</h2>
+                <a href="productos/producto-figuras-fijas/producto-rengoku.html">
+                    <button class="btn-comprar">Ver Producto</button>
+                </a>
+            </div>
+             <div class="tarjeta-producto">
+                <img src="productos/producto-figuras-fijas/imag/genshin.jpg" alt="Figura Hu Tao" class="producto-img">
+                <p class="producto-codigo">Cód: ESC-1078</p>
+                <p class="producto-titulo">HU TAO 1/8 SCALE ARTFX J - GENSHIN IMPACT</p>
+                <h2 class="producto-precio">$100.000,00</h2>
+                <a href="productos/producto-figuras-fijas/producto-hutao.html">
+                    <button class="btn-comprar">Ver Producto</button>
+                </a>
+            </div>
+            <div class="tarjeta-producto">
+                <img src="productos/producto-figuras-fijas/imag/light-yagami.jpg" alt="Figura Light Yagami" class="producto-img">
+                <p class="producto-codigo">Cód: ESC-1072</p>
+                <p class="producto-titulo">LIGHT YAGAMI 1/8 SCALE ARTFX J - DEATH NOTE</p>
+                <h2 class="producto-precio">$200.000,00</h2>
+                <a href="productos/producto-figuras-fijas/producto-light.html">
+                    <button class="btn-comprar">Ver Producto</button>
+                </a>
+            </div>
+        </main>
+
+    </div>
+
+</body>
+</html>

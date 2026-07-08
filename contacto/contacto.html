@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Isekai Market</title>
+    <style>
+        /* === DISEÑO GENERAL Y VARIABLES === */
+        :root {
+            --color-principal: #a29bfe;
+            --color-secundario: #6c5ce7;
+            --texto-oscuro: #2d3436;
+            --texto-claro: #636e72;
+            --fondo-gris: #f8f9fa;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #ffffff; color: var(--texto-oscuro); }
+        a { text-decoration: none; }
+
+        /* === HEADER Y NAVEGACIÓN === */
+        .top-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 50px; background-color: #ffffff;
+        }
+        .logo h1 { font-size: 30px; color: var(--color-principal); letter-spacing: 2px; }
+        .carrito { border: 2px solid #dfe6e9; padding: 10px 25px; border-radius: 25px; font-weight: bold; color: var(--texto-claro); }
+
+        nav { display: flex; justify-content: center; border-bottom: 1px solid #dfe6e9; padding-bottom: 15px; }
+        .nav-item { padding: 15px 30px; color: var(--texto-claro); font-weight: 600; font-size: 14px; transition: color 0.3s; }
+        .nav-item:hover { color: var(--color-principal); }
+
+        /* === SECCIÓN DE CONTACTO === */
+        .contacto-wrapper {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 50px;
+            display: flex;
+            gap: 60px;
+        }
+
+        /* Columna Izquierda (Info) */
+        .contacto-info {
+            flex: 1;
+        }
+        .contacto-info h2 { font-size: 36px; color: var(--texto-oscuro); margin-bottom: 25px; font-weight: bold; }
+        .contacto-info p { color: var(--texto-claro); font-size: 15px; line-height: 1.6; margin-bottom: 30px; }
+        
+        .dato-contacto { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; color: var(--texto-claro); font-size: 15px; }
+        .icono { font-size: 18px; }
+
+        /* Columna Derecha (Formulario) */
+        .contacto-form {
+            flex: 2;
+        }
+        .grupo-form { margin-bottom: 20px; }
+        .grupo-form label { display: block; font-size: 13px; color: var(--texto-claro); margin-bottom: 8px; font-weight: 600; }
+        
+        .input-form {
+            width: 100%; padding: 15px; border: 1px solid #dfe6e9; border-radius: 8px;
+            font-size: 15px; outline: none; transition: border 0.3s;
+        }
+        .input-form:focus { border-color: var(--color-principal); }
+        
+        textarea.input-form { min-height: 150px; resize: vertical; }
+
+        /* Captcha Simulado (Como en tu foto) */
+        .fake-captcha {
+            border: 1px solid #dfe6e9; padding: 15px; border-radius: 8px;
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; width: 300px; background-color: #f8f9fa;
+        }
+
+        .btn-enviar {
+            background-color: var(--color-principal); color: white; border: none;
+            padding: 15px 40px; border-radius: 25px; font-size: 16px; font-weight: bold;
+            cursor: pointer; width: 100%; transition: background 0.3s;
+        }
+        .btn-enviar:hover { background-color: var(--color-secundario); }
+
+        /* === MEGA FOOTER (Inspirado en tu captura) === */
+        .mega-footer {
+            background-color: #ffffff; border-top: 1px solid #dfe6e9;
+            padding: 60px 50px 20px 50px; margin-top: 60px;
+        }
+        .footer-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto;
+        }
+        .footer-col h3 { font-size: 16px; color: var(--texto-oscuro); margin-bottom: 25px; }
+        .footer-col p, .footer-col a { display: block; color: var(--texto-claro); font-size: 14px; margin-bottom: 15px; transition: color 0.3s; }
+        .footer-col a:hover { color: var(--color-principal); }
+        
+        .newsletter-form { display: flex; gap: 10px; }
+        .newsletter-form input { padding: 12px; border: 1px solid #dfe6e9; border-radius: 20px; outline: none; width: 100%; }
+        .newsletter-form button { background-color: var(--color-principal); color: white; border: none; padding: 0 20px; border-radius: 20px; cursor: pointer; font-weight: bold; }
+        
+        /* Logos de Pago y Copyright */
+        .medios-pago { text-align: center; margin: 40px 0; border-top: 1px solid #dfe6e9; padding-top: 40px; }
+        .medios-pago span { display: inline-block; padding: 5px 15px; border: 1px solid #dfe6e9; border-radius: 5px; margin: 5px; font-size: 12px; font-weight: bold; color: var(--texto-claro);}
+        
+        .copyright { text-align: center; font-size: 12px; color: var(--texto-claro); padding: 20px; background-color: var(--fondo-gris); margin: -20px -50px; }
+
+        /* Botón Flotante WhatsApp */
+        .btn-whatsapp {
+            position: fixed; bottom: 30px; right: 30px; background-color: #25d366; color: white;
+            width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); cursor: pointer; transition: transform 0.3s;
+        }
+        .btn-whatsapp:hover { transform: scale(1.1); }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER Y NAVEGACIÓN -->
+    <header class="top-header">
+        <a href="../Pagina.html" class="logo"><h1>ISEKAI MARKET</h1></a>
+        <div class="carrito">🛒 (0)</div>
+    </header>
+    <nav>
+        <a href="../Pagina.html" class="nav-item">INICIO</a>
+        <a href="../Pagina.html" class="nav-item">PRODUCTOS</a>
+        <a href="contacto.html" class="nav-item" style="color: var(--color-principal);">CONTACTO</a>
+    </nav>
+
+    <!-- SECCIÓN DE CONTACTO -->
+    <div class="contacto-wrapper">
+        <!-- Izquierda: Información -->
+        <div class="contacto-info">
+            <h2>Contacto</h2>
+            <p>Los esperamos de lunes a sábado de 9 a 13 y de 17 a 21</p>
+            
+            <div class="dato-contacto">
+                <span class="icono">📱</span> 5493625302080
+            </div>
+            <div class="dato-contacto">
+                <span class="icono">📞</span> 3625302080
+            </div>
+            <div class="dato-contacto">
+                <span class="icono">✉️</span> info@isekaimarket.com
+            </div>
+            <div class="dato-contacto">
+                <span class="icono">📍</span> Santa Maria de Oro 494, Resistencia, Chaco
+            </div>
+        </div>
+
+        <!-- Derecha: Formulario -->
+        <div class="contacto-form">
+            <div class="grupo-form">
+                <label>Nombre</label>
+                <input type="text" class="input-form">
+            </div>
+            <div class="grupo-form">
+                <label>Email</label>
+                <input type="email" class="input-form">
+            </div>
+            <div class="grupo-form">
+                <label>Teléfono</label>
+                <input type="tel" class="input-form">
+            </div>
+            <div class="grupo-form">
+                <label>Mensaje</label>
+                <textarea class="input-form"></textarea>
+            </div>
+            
+            <div class="fake-captcha">
+                <span style="display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 20px; height: 20px; background-color: #27ae60; border-radius: 50%; color: white; display: flex; justify-content: center; align-items: center; font-size: 12px;">✓</div>
+                    ¡Operación exitosa!
+                </span>
+                <span style="font-size: 10px; color: #b2bec3; text-align: right;">Protegido por<br><strong>SEGURIDAD IA</strong></span>
+            </div>
+
+            <button class="btn-enviar">Enviar</button>
+        </div>
+    </div>
+
+    <!-- MEGA FOOTER -->
+    <footer class="mega-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Seguinos</h3>
+                <p>📸 Instagram</p>
+                <p>🎵 TikTok</p>
+            </div>
+            <div class="footer-col">
+                <h3>Categorías</h3>
+                <a href="index.html">INICIO</a>
+                <a href="index.html">PRODUCTOS</a>
+                <a href="contacto.html">CONTACTO</a>
+            </div>
+            <div class="footer-col">
+                <h3>Contactános</h3>
+                <p>5493625302080</p>
+                <p>3625302080</p>
+                <p>info@isekaimarket.com</p>
+                <p>Santa Maria de Oro 494<br>Resistencia, Chaco</p>
+            </div>
+            <div class="footer-col">
+                <h3>Suscribite al newsletter</h3>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Email">
+                    <button>Enviar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="medios-pago">
+            <span>VISA</span>
+            <span>MASTERCARD</span>
+            <span>AMEX</span>
+            <span>MERCADO PAGO</span>
+            <span>TRANSFERENCIA</span>
+        </div>
+
+        <div class="copyright">
+            Copyright ISEKAI MARKET - 2026. Todos los derechos reservados. Trabajo Práctico de Algoritmos y Estructuras de Datos.
+        </div>
+    </footer>
+
+    <!-- Botón Flotante WhatsApp -->
+    <div class="btn-whatsapp">
+        <!-- Ícono unicode de teléfono para simular WP -->
+        ✆
+    </div>
+
+</body>
+</html>

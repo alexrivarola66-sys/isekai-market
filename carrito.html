@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Carrito - Isekai Market</title>
+    <style>
+        :root { 
+            --color-principal: #a29bfe; 
+            --color-secundario: #6c5ce7; 
+            --texto-oscuro: #2d3436; 
+            --texto-claro: #636e72; 
+            --fondo-gris: #f8f9fa; 
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--fondo-gris); color: var(--texto-oscuro); padding-bottom: 50px; }
+        a { text-decoration: none; }
+
+        .top-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background-color: #ffffff; border-bottom: 1px solid #dfe6e9; }
+        .logo h1 { font-size: 30px; color: var(--color-principal); letter-spacing: 2px; }
+
+        .carrito-container { max-width: 1000px; margin: 50px auto; padding: 20px; }
+        .carrito-titulo { font-size: 28px; margin-bottom: 30px; border-bottom: 2px solid #dfe6e9; padding-bottom: 10px; }
+
+        /* LISTA DE PRODUCTOS */
+        .lista-productos { display: flex; flex-direction: column; gap: 20px; margin-bottom: 30px; }
+        
+        .item-carrito { 
+            display: flex; align-items: center; background-color: #ffffff; 
+            padding: 20px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            justify-content: space-between;
+        }
+        .item-detalles { display: flex; align-items: center; gap: 20px; }
+        .item-carrito img { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; background-color: #f1f2f6; }
+        .item-info h3 { font-size: 18px; margin-bottom: 5px; }
+        .item-info p { color: var(--texto-claro); font-size: 13px; }
+        
+        .item-precio { font-size: 20px; font-weight: bold; color: var(--color-secundario); }
+
+        /* SECCIÓN DEL TOTAL Y COMPRA */
+        .resumen-compra { 
+            background-color: #ffffff; padding: 30px; border-radius: 12px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02); display: flex; 
+            justify-content: space-between; align-items: center;
+        }
+        .total-texto { font-size: 22px; font-weight: bold; }
+        .total-monto { color: var(--color-secundario); font-size: 28px; }
+        
+        .btn-comprar-final { 
+            background-color: #00b894; color: white; border: none; 
+            padding: 15px 40px; border-radius: 8px; font-size: 18px; 
+            font-weight: bold; cursor: pointer; transition: background 0.3s; 
+        }
+        .btn-comprar-final:hover { background-color: #009474; }
+
+        /* MENSAJE DE CARRITO VACÍO */
+        .carrito-vacio { text-align: center; padding: 50px; background: white; border-radius: 12px; border: 2px dashed #dfe6e9; }
+        .btn-volver { display: inline-block; margin-top: 20px; background-color: var(--color-secundario); color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <header class="top-header">
+        <a href="index.html" class="logo"><h1>ISEKAI MARKET</h1></a>
+    </header>
+
+    <div class="carrito-container">
+        <h2 class="carrito-titulo">Tu Carrito de Compras</h2>
+        
+        <div id="contenido-carrito">
+            </div>
+    </div>
+
+    <script>
+        function cargarCarrito() {
+            const contenedor = document.getElementById('contenido-carrito');
+            // 1. Leemos los productos del localStorage
+            const carrito = JSON.parse(localStorage.getItem('carritoApp')) || [];
+
+            // 2. Si el carrito está vacío, mostramos un cartel
+            if (carrito.length === 0) {
+                contenedor.innerHTML = `
+                    <div class="carrito-vacio">
+                        <h2>🛒 Tu carrito está vacío</h2>
+                        <p>¿Todavía no te decidiste? Tenemos los mejores artículos de rol y anime esperando por vos.</p>
+                        <a href="index.html" class="btn-volver">Volver a la Tienda</a>
+                    </div>
+                `;
+                return;
+            }
+
+            // 3. Si hay productos, empezamos a construir el HTML de la lista
+            let htmlProductos = '<div class="lista-productos">';
+            let sumaTotal = 0;
+
+            carrito.forEach(producto => {
+                // Limpiamos el texto del precio para poder sumarlo numéricamente (ej: "$35.500,00" -> 35500)
+                let precioLimpio = parseFloat(producto.precio.replace('$', '').replace('.', '').replace(',', '.'));
+                sumaTotal += precioLimpio;
+
+                htmlProductos += `
+                    <div class="item-carrito">
+                        <div class="item-detalles">
+                            <img src="${producto.imagen}" alt="${producto.titulo}">
+                            <div class="item-info">
+                                <h3>${producto.titulo}</h3>
+                                <p>${producto.codigo}</p>
+                            </div>
+                        </div>
+                        <div class="item-precio">${producto.precio}</div>
+                    </div>
+                `;
+            });
+
+            htmlProductos += '</div>'; // Cerramos la lista de productos
+
+            // Formateamos el total de vuelta a pesos argentinos
+            const totalFormateado = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(sumaTotal);
+
+            // 4. Agregamos el resumen con el botón de finalizar compra
+            htmlProductos += `
+                <div class="resumen-compra">
+                    <div class="total-texto">Total a pagar: <span class="total-monto">${totalFormateado}</span></div>
+                    <button class="btn-comprar-final" onclick="finalizarCompra()">Finalizar Compra</button>
+                </div>
+            `;
+
+            contenedor.innerHTML = htmlProductos;
+        }
+
+        // Función que se ejecuta al darle al botón verde de "Finalizar Compra"
+        function finalizarCompra() {
+            alert("🚀 ¡Compra Procesada con Éxito!\n\nMuchas gracias por elegir Isekai Market. Tu pedido ya está en camino a tu inventario.");
+            
+            // Vaciamos el localStorage para que el carrito vuelva a cero
+            localStorage.removeItem('carritoApp');
+            
+            // Recargamos la pantalla para que muestre el estado de "Carrito vacío"
+            cargarCarrito();
+        }
+
+        // Ejecutamos la función apenas carga la página
+        window.onload = cargarCarrito;
+    </script>
+</body>
+</html>

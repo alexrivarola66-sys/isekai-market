@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros - Isekai Market</title>
+    <style>
+        /* === DISEÑO GENERAL Y VARIABLES === */
+        :root {
+            --color-principal: #a29bfe;
+            --color-secundario: #6c5ce7;
+            --texto-oscuro: #2d3436;
+            --texto-claro: #636e72;
+            --fondo-gris: #f8f9fa;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #ffffff; color: var(--texto-oscuro); }
+        a { text-decoration: none; }
+
+        /* === HEADER Y NAVEGACIÓN === */
+        .top-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 50px; background-color: #ffffff;
+        }
+        .logo h1 { font-size: 30px; color: var(--color-principal); letter-spacing: 2px; }
+        .carrito { border: 2px solid #dfe6e9; padding: 10px 25px; border-radius: 25px; font-weight: bold; color: var(--texto-claro); }
+
+        nav { display: flex; justify-content: center; border-bottom: 1px solid #dfe6e9; padding-bottom: 15px; }
+        .nav-item { padding: 15px 30px; color: var(--texto-claro); font-weight: 600; font-size: 14px; transition: color 0.3s; }
+        .nav-item:hover { color: var(--color-principal); }
+
+        /* === BANNER HERO NOSOTROS === */
+        .hero-nosotros {
+            background-color: var(--fondo-gris);
+            padding: 80px 50px;
+            text-align: center;
+            border-bottom: 1px solid #dfe6e9;
+        }
+        .hero-nosotros h2 { font-size: 42px; color: var(--texto-oscuro); margin-bottom: 15px; }
+        .hero-nosotros p { font-size: 18px; color: var(--texto-claro); max-width: 600px; margin: 0 auto; }
+
+        /* === SECCIONES DE CONTENIDO === */
+        .contenido-wrapper {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 50px;
+        }
+
+        .fila-info {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .fila-info.reversa {
+            flex-direction: row-reverse;
+        }
+
+        .texto-info {
+            flex: 1;
+        }
+        .texto-info h3 { font-size: 28px; color: var(--color-secundario); margin-bottom: 20px; }
+        .texto-info p { font-size: 16px; color: var(--texto-claro); line-height: 1.8; margin-bottom: 15px; }
+
+        .imagen-info {
+            flex: 1;
+        }
+        .imagen-info img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        /* Tarjeta del Creador (Para el TP) */
+        .tarjeta-creador {
+            background-color: var(--fondo-gris);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px dashed #dfe6e9;
+            margin-top: 40px;
+        }
+        .tarjeta-creador h4 { font-size: 22px; color: var(--texto-oscuro); margin-bottom: 10px; }
+        .tarjeta-creador p { color: var(--texto-claro); font-size: 15px; line-height: 1.6; }
+
+        /* === MEGA FOOTER === */
+        .mega-footer {
+            background-color: #ffffff; border-top: 1px solid #dfe6e9;
+            padding: 60px 50px 20px 50px; margin-top: 60px;
+        }
+        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .footer-col h3 { font-size: 16px; color: var(--texto-oscuro); margin-bottom: 25px; }
+        .footer-col p, .footer-col a { display: block; color: var(--texto-claro); font-size: 14px; margin-bottom: 15px; transition: color 0.3s; }
+        .footer-col a:hover { color: var(--color-principal); }
+        
+        .newsletter-form { display: flex; gap: 10px; }
+        .newsletter-form input { padding: 12px; border: 1px solid #dfe6e9; border-radius: 20px; outline: none; width: 100%; }
+        .newsletter-form button { background-color: var(--color-principal); color: white; border: none; padding: 0 20px; border-radius: 20px; cursor: pointer; font-weight: bold; }
+        
+        .medios-pago { text-align: center; margin: 40px 0; border-top: 1px solid #dfe6e9; padding-top: 40px; }
+        .medios-pago span { display: inline-block; padding: 5px 15px; border: 1px solid #dfe6e9; border-radius: 5px; margin: 5px; font-size: 12px; font-weight: bold; color: var(--texto-claro);}
+        
+        .copyright { text-align: center; font-size: 12px; color: var(--texto-claro); padding: 20px; background-color: var(--fondo-gris); margin: -20px -50px; }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER Y NAVEGACIÓN -->
+    <header class="top-header">
+        <a href="../index.html" class="logo"><h1>ISEKAI MARKET</h1></a>
+        <div class="carrito">🛒 (0)</div>
+    </header>
+    <nav>
+        <a href="../index.html" class="nav-item">INICIO</a>
+        <a href="../index.html" class="nav-item">PRODUCTOS</a>
+        <a href="nosotros.html" class="nav-item" style="color: var(--color-principal);">NOSOTROS</a>
+        <a href="../contacto/contacto.html" class="nav-item">CONTACTO</a>
+    </nav>
+
+    <!-- BANNER HERO -->
+    <section class="hero-nosotros">
+        <h2>Bienvenido a tu nuevo mundo</h2>
+        <p>Somos el punto de encuentro para coleccionistas, roleros y apasionados por la cultura pop en Argentina.</p>
+    </section>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="contenido-wrapper">
+        
+        <!-- Fila 1: ¿Qué somos? -->
+        <div class="fila-info">
+            <div class="texto-info">
+                <h3>¿Qué es Isekai Market?</h3>
+                <p>Nacimos con la idea de traer el mejor loot para tus partidas y armar la vitrina de tus sueños. Entendemos que coleccionar no es solo comprar un producto, es traer a la vida real un pedacito de esas historias que nos apasionan.</p>
+                <p>En nuestro catálogo vas a encontrar desde el último tomo de tu manga favorito hasta figuras articuladas premium, manuales para tus campañas de D&D y merchandising oficial para que lleves tu afición a todos lados.</p>
+            </div>
+            <div class="imagen-info">
+                <!-- Imagen de muestra (simulando la tienda o vitrinas) -->
+                <img src="imag/Manga-shop.jpg" alt="Vitrinas de Isekai Market">
+            </div>
+        </div>
+
+        <!-- Fila 2: Nuestro Objetivo (Reversa) -->
+        <div class="fila-info reversa">
+            <div class="texto-info">
+                <h3>Nuestro Objetivo</h3>
+                <p>Queremos ser mucho más que un e-commerce; buscamos crear una comunidad. Sabemos lo difícil que a veces es conseguir merchandising de buena calidad y a precios justos, por eso trabajamos directamente con los mejores proveedores para asegurar el stock de las franquicias más pedidas.</p>
+                <p>Prepará tus dados y despejá tu estantería, porque tu próxima aventura comienza acá.</p>
+            </div>
+            <div class="imagen-info">
+                <!-- Imagen de muestra (simulando gente jugando o leyendo manga) -->
+                <img src="imag/mesad&d.jpg" alt="Mesa de Dungeons and Dragons">
+            </div>
+        </div>
+
+        <!-- Fila 3: Sobre el Proyecto / TP -->
+        <div class="tarjeta-creador">
+            <h4>Sobre el Desarrollador</h4>
+            <p><strong>Isekai Market</strong> es un proyecto integral desarrollado por <strong>Rivarola Alex</strong> para la cátedra de Algoritmos y Estructuras de Datos. <br><br> Toda la arquitectura de esta tienda virtual fue diseñada aplicando conceptos de registros y tipos de datos abstractos, utilizando el campo <code>CodArticulo</code> como clave principal para garantizar un sistema de inventario robusto y eficiente.</p>
+        </div>
+
+    </div>
+
+    <!-- MEGA FOOTER -->
+    <footer class="mega-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Seguinos</h3>
+                <p>📸 Instagram</p>
+                <p>🎵 TikTok</p>
+            </div>
+            <div class="footer-col">
+                <h3>Categorías</h3>
+                <a href="../Pagina.html">INICIO</a>
+                <a href="../contacto/contacto.html">CONTACTO</a>
+            </div>
+            <div class="footer-col">
+                <h3>Contactános</h3>
+                <p>5493625302080</p>
+                <p>info@isekaimarket.com</p>
+                <p>Santa Maria de Oro 494<br>Resistencia, Chaco</p>
+            </div>
+            <div class="footer-col">
+                <h3>Suscribite al newsletter</h3>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Email">
+                    <button>Enviar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="medios-pago">
+            <span>VISA</span>
+            <span>MASTERCARD</span>
+            <span>AMEX</span>
+            <span>MERCADO PAGO</span>
+            <span>TRANSFERENCIA</span>
+        </div>
+
+        <div class="copyright">
+            Copyright ISEKAI MARKET - 2026. Todos los derechos reservados. Trabajo Práctico de Algoritmos y Estructuras de Datos.
+        </div>
+    </footer>
+
+</body>
+</html>

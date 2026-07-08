@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isekai Market - Tu Aventura Comienza Aquí</title>
+    <style>
+        /* === DISEÑO GENERAL Y VARIABLES === */
+        :root {
+            --color-principal: #a29bfe; /* Lila pastel */
+            --color-secundario: #6c5ce7; /* Violeta oscuro para hover */
+            --texto-oscuro: #2d3436;
+            --texto-claro: #636e72;
+            --fondo-gris: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--fondo-gris);
+            color: var(--texto-oscuro);
+        }
+
+        /* === HEADER Y MEGA MENÚ === */
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #ffffff;
+        }
+
+        .buscador input {
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: 1px solid #dfe6e9;
+            width: 280px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .buscador input:focus {
+            border-color: var(--color-principal);
+        }
+
+        .logo h1 {
+            font-size: 30px;
+            color: var(--color-principal);
+            letter-spacing: 2px;
+            text-decoration: none;
+        }
+
+        .carrito {
+            border: 2px solid #dfe6e9;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--texto-claro);
+            transition: all 0.3s;
+        }
+
+        .carrito:hover {
+            border-color: var(--color-principal);
+            color: var(--color-secundario);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #ffffff;
+            border-bottom: 1px solid #dfe6e9;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            position: relative;
+        }
+
+        .nav-item {
+            padding: 18px 35px;
+            color: var(--texto-claro);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-item:hover {
+            color: var(--color-principal);
+        }
+
+        /* Desplegable del Mega Menú */
+        .dropdown { position: static; }
+        .mega-menu {
+            display: none;
+            position: absolute;
+            top: 100%; left: 0; width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            padding: 40px;
+            z-index: 1000;
+            border-top: 3px solid var(--color-principal);
+        }
+
+        .dropdown:hover .mega-menu {
+            display: flex; justify-content: center; gap: 90px;
+        }
+
+        .columna-menu h3 {
+            font-size: 15px; color: var(--texto-oscuro);
+            margin-bottom: 18px; border-bottom: 2px solid var(--fondo-gris);
+            padding-bottom: 8px;
+        }
+
+        .columna-menu a {
+            display: block; color: var(--texto-claro); text-decoration: none;
+            font-size: 14px; margin-bottom: 12px; transition: color 0.2s;
+        }
+        .columna-menu a:hover { color: var(--color-secundario); }
+
+        /* === BANNER HERO (Limpio y minimalista) === */
+        .hero {
+            height: 350px;
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            color: white; text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .hero h2 { font-size: 42px; margin-bottom: 10px; letter-spacing: 1px; }
+        .hero p { font-size: 18px; opacity: 0.9; }
+
+        /* === GRILLA DE PRODUCTOS === */
+        .seccion-titulo {
+            text-align: center; font-size: 28px;
+            color: var(--texto-oscuro); margin-bottom: 40px;
+        }
+
+        .productos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px; padding: 0 50px 60px 50px;
+            max-width: 1400px; margin: 0 auto;
+        }
+
+        .tarjeta-producto {
+            background-color: #ffffff; border: 1px solid #f1f2f6;
+            border-radius: 12px; padding: 20px; text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .tarjeta-producto:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-color: #dfe6e9;
+        }
+
+        .producto-img {
+            width: 100%; border-radius: 8px; margin-bottom: 15px;
+            object-fit: cover;
+        }
+
+        .producto-codigo {
+            font-size: 12px; color: #b2bec3; margin-bottom: 5px;
+        }
+
+        .producto-titulo {
+            font-size: 15px; color: var(--texto-claro);
+            margin-bottom: 10px; height: 45px; font-weight: 500;
+        }
+
+        .producto-precio {
+            font-size: 22px; color: var(--texto-oscuro);
+            font-weight: bold; margin-bottom: 20px;
+        }
+
+        .btn-comprar {
+            background-color: transparent; color: var(--color-secundario);
+            border: 2px solid var(--color-principal);
+            padding: 12px 20px; border-radius: 25px;
+            cursor: pointer; width: 100%; font-weight: bold;
+            font-size: 14px; transition: all 0.3s;
+        }
+
+        .btn-comprar:hover {
+            background-color: var(--color-secundario);
+            border-color: var(--color-secundario); color: white;
+        }
+
+        /* === FOOTER === */
+        footer {
+            background-color: #ffffff; padding: 50px; text-align: center;
+            color: var(--texto-claro); border-top: 1px solid #dfe6e9;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-header">
+        <div class="buscador">
+            <input type="text" placeholder="Buscá mangas, figuras, dados...">
+        </div>
+        <a href="index.htmll" class="logo">
+            <h1>ISEKAI MARKET</h1>
+        </a>
+        <a href="../../../carrito.html">
+                    <<button class="btn-grande">Añadir al Carrito</button>>
+                </a>
+    </header>
+
+    <nav>
+        <a href="index.html" class="nav-item">INICIO</a>
+        
+        <div class="dropdown">
+            <a href="#" class="nav-item">PRODUCTOS ▾</a>
+            <div class="mega-menu">
+                <div class="columna-menu">
+                    <h3>COLECCIONABLES</h3>
+                    <a href="categorias/figuras.html">Figuras</a>
+                    <a href="categorias/figuras-estaticas.html">Figuras Estáticas</a>
+                    <a href="categorias/funkopop.html">Funko Pop!</a>
+                </div>
+                <div class="columna-menu">
+                    <h3>LIBRERÍA Y ROL</h3>
+                    <a href="categorias/mangas.html">Mangas</a>
+                    <a href="categorias/D&D.html">Manuales D&D 5E</a>
+                    <a href="categorias/dados.html">Sets de Dados</a>
+                </div>
+                <div class="columna-menu">
+                    <h3>MERCHANDISING</h3>
+                    <a href="categorias/cosplay.html">Indumentaria</a>
+                    <a href="categorias/llaveros-pines.html">Llaveros y Pines</a>
+                    <a href="categorias/posters.html">Posters</a>
+                </div>
+            </div>
+        </div>
+
+        <a href="nosotros/nosotros.html" class="nav-item">NOSOTROS</a>
+        <a href="contacto/contacto.html" class="nav-item">CONTACTO</a>
+    </nav>
+
+    <section class="hero">
+        <h2>TU NUEVA AVENTURA COMIENZA ACÁ</h2>
+        <p>Envíos a todo el país. Llevá tu inventario al siguiente nivel.</p>
+    </section>
+
+    <h3 class="seccion-titulo">Loot Destacado</h3>
+    
+    <section class="productos-container">
+        
+        <div class="tarjeta-producto">
+            <img src="categorias/productos/producto-figuras/imag/guts-figura.jpg" alt="Figura" class="producto-img">
+            <p class="producto-codigo">Cód: FIG-0042</p>
+            <p class="producto-titulo">FIGURA ARTICULADA BERSERK GUTS - 35CM</p>
+            <h2 class="producto-precio">$45.500,00</h2>
+            <a href="categorias/productos/producto-figuras/producto-berserk.html">
+                    <button class="btn-comprar">Ver Producto</button>
+                </a>
+        </div>
+
+        <div class="tarjeta-producto">
+            <img src="categorias/productos/producto-D&D/imag/manual-juagor.jpg" alt="Manual" class="producto-img">
+            <p class="producto-codigo">Cód: ROL-1020</p>
+            <p class="producto-titulo">MANUAL DEL JUGADOR D&D 5E EN ESPAÑOL</p>
+            <h2 class="producto-precio">$32.000,00</h2>
+            <a href="categorias/productos/producto-D&D/producto-manualjugador.html">
+                    <button class="btn-comprar">Ver Producto</button>
+                </a>
+        </div>
+
+        <div class="tarjeta-producto">
+            <img src="categorias/productos/producto-mangas/imag/one-piece1.jpg" alt="Caja" class="producto-img">
+            <p class="producto-codigo">Cód: LIB-7061</p>
+            <p class="producto-titulo">ONE PIECE - TOMO 1</p>
+            <h2 class="producto-precio">$10.500,00</h2>
+            <a href="categorias/productos/producto-mangas/producto-onepiece.html">
+                    <button class="btn-comprar">Ver Producto</button>
+                </a>
+        </div>
+
+    </section>
+
+    <footer>
+        <h2 style="color: var(--color-principal); margin-bottom: 10px;">ISEKAI MARKET</h2>
+        <p>El mejor equipamiento para tu party. Compra 100% segura.</p>
+        <p style="margin-top: 20px; font-size: 13px;">© 2026 Isekai Market. Todos los derechos reservados para el Trabajo Práctico.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funko Pop - Isekai Market</title>
+    <style>
+        /* === DISEÑO GENERAL Y VARIABLES === */
+        :root {
+            --color-principal: #a29bfe;
+            --color-secundario: #6c5ce7;
+            --texto-oscuro: #2d3436;
+            --texto-claro: #636e72;
+            --fondo-gris: #f8f9fa;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--fondo-gris); color: var(--texto-oscuro); }
+        a { text-decoration: none; }
+
+        /* HEADER BÁSICO */
+        .top-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 50px; background-color: #ffffff; border-bottom: 1px solid #dfe6e9;
+        }
+        
+        .logo h1 { font-size: 30px; color: var(--color-principal); letter-spacing: 2px; }
+        .carrito { font-weight: bold; color: var(--texto-claro); }
+
+        /* === CONTENEDOR DEL CATÁLOGO === */
+        .catalogo-container {
+            display: flex; padding: 40px 50px; max-width: 1400px; margin: 0 auto; gap: 50px;
+        }
+
+        /* COLUMNA IZQUIERDA: Filtros Especializados Funko */
+        .filtros-sidebar { width: 250px; flex-shrink: 0; }
+        .filtros-sidebar h2 { font-size: 24px; color: var(--texto-oscuro); margin-bottom: 30px; }
+        .filtros-sidebar h4 { font-size: 15px; color: var(--texto-claro); margin-bottom: 15px; border-bottom: 1px solid #dfe6e9; padding-bottom: 5px;}
+        
+        .rango-precio { display: flex; gap: 10px; margin-bottom: 30px; }
+        .rango-precio input { width: 100%; padding: 8px; border: 1px solid #dfe6e9; border-radius: 5px; outline: none; }
+        
+        .opcion-filtro { margin-bottom: 12px; color: var(--texto-claro); font-size: 14px; display: flex; align-items: center;}
+        .opcion-filtro input { margin-right: 10px; cursor: pointer; }
+
+        /* COLUMNA DERECHA: Grilla de Productos */
+        .productos-grilla {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 30px; width: 100%;
+        }
+
+        /* TARJETAS DE PRODUCTO */
+        .tarjeta-producto {
+            background-color: #ffffff; border: 1px solid #f1f2f6; border-radius: 12px;
+            padding: 20px; text-align: center; transition: all 0.3s ease;
+            position: relative;
+        }
+        .tarjeta-producto:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-color: #dfe6e9; }
+        
+        .etiqueta-exclusiva {
+            position: absolute; top: 10px; right: 10px; background-color: #fdcb6e; color: #2d3436;
+            font-size: 11px; font-weight: bold; padding: 5px 10px; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .producto-img { width: 100%; border-radius: 8px; margin-bottom: 15px; }
+        .producto-codigo { font-size: 12px; color: #b2bec3; margin-bottom: 5px; }
+        .producto-titulo { font-size: 15px; color: var(--texto-claro); margin-bottom: 10px; height: 45px; font-weight: 500; }
+        .producto-precio { font-size: 22px; color: var(--texto-oscuro); font-weight: bold; margin-bottom: 20px; }
+        
+        .btn-comprar {
+            background-color: transparent; color: var(--color-secundario); border: 2px solid var(--color-principal);
+            padding: 12px 20px; border-radius: 25px; cursor: pointer; width: 100%; font-weight: bold; transition: all 0.3s;
+        }
+        .btn-comprar:hover { background-color: var(--color-secundario); border-color: var(--color-secundario); color: white; }
+    </style>
+</head>
+<body>
+
+    <header class="top-header">
+        <a href="../index.html" class="logo">
+            <h1>ISEKAI MARKET</h1>
+        </a>
+        <div class="carrito">🛒 Mi Carrito (0)</div>
+    </header>
+
+    <div class="catalogo-container">
+        
+        <aside class="filtros-sidebar">
+            <h2>FUNKO POP!</h2>
+            
+            <h4>Rango de Precio</h4>
+            <div class="rango-precio">
+                <input type="text" placeholder="Mínimo">
+                <input type="text" placeholder="Máximo">
+            </div>
+
+            <h4>Edición</h4>
+            <div class="opcion-filtro"><input type="checkbox"> Regular (42)</div>
+            <div class="opcion-filtro"><input type="checkbox"> Chase Edition (5)</div>
+            <div class="opcion-filtro"><input type="checkbox"> Glow in the Dark (8)</div>
+            <div class="opcion-filtro"><input type="checkbox"> Flocked (Textura) (3)</div>
+
+            <h4 style="margin-top: 30px;">Línea</h4>
+            <div class="opcion-filtro"><input type="checkbox"> Animation (Anime)</div>
+            <div class="opcion-filtro"><input type="checkbox"> Games</div>
+            <div class="opcion-filtro"><input type="checkbox"> Movies & Television</div>
+            <div class="opcion-filtro"><input type="checkbox"> Marvel / DC</div>
+        </aside>
+
+        <main class="productos-grilla">
+            <div class="tarjeta-producto">
+                <div class="etiqueta-exclusiva">CHASE</div>
+                <img src="productos/producto-funkopop/imag/luffy-gear5.jpg" alt="Funko Luffy" class="producto-img">
+                <p class="producto-codigo">Cód: FNK-1607</p>
+                <p class="producto-titulo">FUNKO POP! ANIMATION: ONE PIECE - LUFFY GEAR 5</p>
+                <h2 class="producto-precio">$38.500,00</h2>
+                <a href="productos/producto-funkopop/producto-luffy.html">
+                    <button class="btn-comprar">Ver Producto</button>
+                </a>
+            </div>
+
+            <div class="tarjeta-producto">
+                <img src="productos/producto-funkopop/imag/saturo-gojo.jpg" alt="Funko Gojo" class="producto-img">
+                <p class="producto-codigo">Cód: FNK-1120</p>
+                <p class="producto-titulo">FUNKO POP! ANIMATION: JUJUTSU KAISEN - SATORU GOJO</p>
+                <h2 class="producto-precio">$22.000,00</h2>
+                <a href="productos/producto-funkopop/producto-gojo.html">
+                    <button class="btn-comprar">Ver Producto</button>
+                </a>
+            </div>
+
+            <div class="tarjeta-producto">
+                <div class="etiqueta-exclusiva">GLOW</div>
+                <img src="productos/producto-funkopop/imag/kratos.jpg" alt="Funko Kratos" class="producto-img">
+                <p class="producto-codigo">Cód: FNK-0269</p>
+                <p class="producto-titulo">FUNKO POP! GAMES: GOD OF WAR - KRATOS</p>
+                <h2 class="producto-precio">$28.900,00</h2>
+                <a href="productos/producto-funkopop/producto-kratos.html">
+                    <button class="btn-comprar">Ver Producto</button>
+                </a>
+            </div>
+            
+            <div class="tarjeta-producto">
+                <img src="productos/producto-funkopop/imag/denji.jpg" alt="Funko Denji" class="producto-img">
+                <p class="producto-codigo">Cód: FNK-1345</p>
+                <p class="producto-titulo">FUNKO POP! ANIMATION: CHAINSAW MAN - DENJI</p>
+                <h2 class="producto-precio">$21.500,00</h2>
+                <a href="productos/producto-funkopop/producto-denji.html">
+                    <button class="btn-comprar">Ver Producto</button>
+                </a>
+            </div>
+        </main>
+
+    </div>
+
+</body>
+</html> 

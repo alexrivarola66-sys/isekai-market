@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+  
+    <title> Funko Pop Kratos - Isekai Market</title>
+    
+    <style>
+        :root { --color-principal: #a29bfe; --color-secundario: #6c5ce7; --texto-oscuro: #2d3436; --texto-claro: #636e72; --fondo-gris: #f8f9fa; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--fondo-gris); color: var(--texto-oscuro); }
+        a { text-decoration: none; }
+        .top-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background-color: #ffffff; border-bottom: 1px solid #dfe6e9; }
+        .logo h1 { font-size: 30px; color: var(--color-principal); letter-spacing: 2px; }
+        .producto-detalle-container { display: flex; max-width: 1200px; margin: 50px auto; background-color: #ffffff; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .imagen-producto { flex: 1; background-color: #f1f2f6; display: flex; align-items: center; justify-content: center; }
+        .imagen-producto img { width: 100%; height: auto; object-fit: cover; }
+        .info-producto { flex: 1; padding: 50px; display: flex; flex-direction: column; justify-content: center; }
+        .etiqueta-categoria { background-color: #f1f2f6; color: var(--color-secundario); padding: 5px 15px; border-radius: 20px; font-size: 13px; font-weight: bold; display: inline-block; margin-bottom: 15px; align-self: flex-start; }
+        .info-producto h2 { font-size: 32px; color: var(--texto-oscuro); margin-bottom: 10px; line-height: 1.2; }
+        .codigo { font-size: 14px; color: #b2bec3; margin-bottom: 25px; }
+        .precio { font-size: 36px; color: var(--color-secundario); font-weight: bold; margin-bottom: 20px; }
+        .stock { font-size: 15px; color: #00b894; font-weight: bold; margin-bottom: 30px; display: flex; align-items: center; gap: 8px;}
+        .stock span { display: block; width: 10px; height: 10px; background-color: #00b894; border-radius: 50%; }
+        .btn-grande { background-color: var(--color-secundario); color: white; border: none; padding: 18px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; transition: background 0.3s; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-grande:hover { background-color: #5f27cd; }
+        .descripcion h4 { font-size: 18px; margin-bottom: 10px; border-bottom: 1px solid #dfe6e9; padding-bottom: 5px;}
+        .descripcion p { color: var(--texto-claro); line-height: 1.6; font-size: 15px; }
+        .datos-tecnicos { margin-top: 20px; list-style: none; }
+        .datos-tecnicos li { margin-bottom: 8px; font-size: 14px; color: var(--texto-claro); }
+        .datos-tecnicos strong { color: var(--texto-oscuro); width: 100px; display: inline-block; }
+    </style>
+</head>
+<body>
+
+    <header class="top-header">
+        <a href="../../../index.html" class="logo"><h1>ISEKAI MARKET</h1></a>
+    </header>
+
+    <div class="producto-detalle-container">
+        <div class="imagen-producto">
+            <img src="../producto-funkopop/imag/kratos.jpg" alt="Funko Pop Kratos">
+        </div>
+
+        <div class="info-producto">
+            
+            <div class="etiqueta-categoria">Funko Pop!</div>
+            
+            
+            <h2>FUNKO POP! GAMES: GOD OF WAR - KRATOS</h2>
+            
+            
+            <div class="codigo">Clave de Artículo:  FNK-0269</div>
+            
+            
+            <div class="precio">$28.900,00</div>
+            
+            
+            <div class="stock"><span></span> Stock Disponible: 10 unidades</div>
+
+            <a href="../../../carrito.html">
+                    <<button class="btn-grande">Añadir al Carrito</button>>
+                </a>
+
+            <div class="descripcion">
+                <h4>Detalles del Registro</h4>
+                <ul class="datos-tecnicos">
+                    <!-- 8. CAMBIAR LOS CAMPOS TÉCNICOS SEGÚN EL PRODUCTO -->
+                   <li><strong>Categoría:</strong> Funko Pop!</li>
+                    <li><strong>Franquicia:</strong> Games</li>
+                    <li><strong>Material:</strong> PVC</li>
+                    <li><strong>Edicion:</strong> Glow In The Dark</li>
+            </div>
+        </div>
+    </div>
+   <script>
+        const botonGrande = document.querySelector('.btn-grande');
+    
+        botonGrande.addEventListener('click', () => {
+            // 1. Capturamos los datos reales de la pantalla
+            const tituloProducto = document.querySelector('.info-producto h2').innerText;
+            const precioProducto = document.querySelector('.precio').innerText;
+            // Buscamos la ruta de la imagen original
+            const imagenSrc = document.querySelector('.imagen-producto img').src;
+            const codigoProducto = document.querySelector('.codigo').innerText;
+
+            // 2. Creamos un objeto con la estructura del producto
+            const productoAAgregar = {
+                titulo: tituloProducto,
+                precio: precioProducto,
+                imagen: imagenSrc,
+                codigo: codigoProducto
+            };
+
+            // 3. Traemos lo que ya haya en el carrito (si no hay nada, empezamos con un array vacío)
+            let carrito = JSON.parse(localStorage.getItem('carritoApp')) || [];
+            
+            // 4. Sumamos el nuevo producto al array
+            carrito.push(productoAAgregar);
+            
+            // 5. Lo guardamos actualizado en el localStorage (convertido a texto con JSON)
+            localStorage.setItem('carritoApp', JSON.stringify(carrito));
+            
+            // 6. Feedback visual para el usuario
+            alert(`🛒 ¡Agregado!\n\nSe guardó en el carrito:\n${tituloProducto}`);
+            
+            botonGrande.innerText = "¡Agregado con éxito!";
+            botonGrande.style.backgroundColor = "#00b894";
+            botonGrande.disabled = true;
+        });
+    </script>
+</body>
+</html>
